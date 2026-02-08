@@ -1,0 +1,285 @@
+views:
+  - title: FordPass
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Trouble Indicators
+            icon: mdi:alert-outline
+          - type: markdown
+            content: >
+              {%- set sensor ='sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_indicators' -%} {%- set faults = [] -%}
+              {%- if state_attr(sensor, 'adaptivecruisecontrol_600E14') == true -%}{%- set faults = faults + ['Adaptive Cruise Control'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'airfilterminder_600E02') == true -%}{%- set faults = faults + ['Air Filter Minder'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'airsuspensionridecontrolfault_600E22') == true -%}{%- set faults = faults + ['Air Suspension Control Fault'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'allwheeldrivedisabled_600E03') == true -%}{%- set faults = faults + ['All-Wheel Drive Disabled'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'antitheft_600E21') == true -%}{%- set faults = faults + ['Antitheft Device'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'antilockbrake_600E29') == true -%}{%- set faults = faults + ['Antilock Brakes'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'blindspotdetection_600F30') == true -%}{%- set faults = faults + ['Blind Spot Detection System'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'brakewarning_600E28') == true -%}{%- set faults = faults + ['Brake Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'chargesystemfault_600E25') == true -%}{%- set faults = faults + ['Charge System Fault'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'checkfuelcap_600E13') == true -%}{%- set faults = faults + ['Check Fuel Cap'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'checkfuelfillinlet_600E12') == true -%}{%- set faults = faults + ['Check Fuel Inlet'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselengineidleshutdown_600E05') == true -%}{%- set faults = faults + ['Diesel Engine Idle Shutdown'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselenginewarning_600E06') == true -%}{%- set faults = faults + ['Diesel Engine Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselexhaustfluidlow_600F27') == true -%}{%- set faults = faults + ['Diesel Exhaust Fluid Low'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselexhaustfluidsystemfault_600F26') == true -%}{%- set faults = faults + ['Diesel Exhaust Fluid System'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselexhaustovertemp_600E08') == true -%}{%- set faults = faults + ['Diesel Exhaust Over Temperature'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselparticulatefilter_600E07') == true -%}{%- set faults = faults + ['Diesel Particulate Filter'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'dieselpreheat_600E09') == true -%}{%- set faults = faults + ['Diesel Pre-Heat'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'electrictrailerbrakeconnection_600E18') == true -%}{%- set faults = faults + ['Electric Trailer Brake Connection'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'electronicparkingbrakewarning_600F15') == true -%}{%- set faults = faults + ['Electronic Parking Brake Warning'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'enginecoolantovertemp_600E16') == true -%}{%- set faults = faults + ['Engine Coolant Over Temperature'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'fastenseatbeltwarning_600E31') == true -%}{%- set faults = faults + ['Fasten Seat Belt Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'forwardcollisionwarning_600E00') == true -%}{%- set faults = faults + ['Forward Collision Warning System'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'fueldooropen_600E11') == true -%}{%- set faults = faults + ['Fuel Door Open'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'gasparticulatefilterwarning_600F18') == true -%}{%- set faults = faults + ['Gas Particulate Filter Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'genericabsfaultwarning_600F17') == true -%}{%- set faults = faults + ['Generic ABS Failure Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'hevhazard_600F19') == true -%}{%- set faults = faults + ['HEV Hazard'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'hilldescentcontrolfault_600F25') == true -%}{%- set faults = faults + ['Hill Descent Control System'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'hillstartassistwarning_600F22') == true -%}{%- set faults = faults + ['Hill Start Assist Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'lanekeepingaid_600F24') == true -%}{%- set faults = faults + ['Lane Keeping Aid'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'lightingsystemfailure_600F21') == true -%}{%- set faults = faults + ['Lighting System Failure'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'lowbrakefluid_600F16') == true -%}{%- set faults = faults + ['Low Brake Fluid'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'lowengineoilpressure_600E17') == true -%}{%- set faults = faults + ['Low Engine Oil Pressure'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'lowfuel_600E20') == true -%}{%- set faults = faults + ['Low Fuel'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'lowwasherfluid_600E19') == true -%}{%- set faults = faults + ['Low Washer Fluid'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'malfunctionindicator_600E26') == true -%}{%- set faults = faults + ['Malfunction Indicator'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'parkaidmalfunction_600E01') == true -%}{%- set faults = faults + ['Paring Aid Malfunction'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'passiveentrypassivestart_600E04') == true -%}{%- set faults = faults + ['Passive Entry Passive Start'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'powertrainmalfunction_600E15') == true -%}{%- set faults = faults + ['Powertrain Malfunction'] -%}{%- endif -%}
+              {%- if state_attr(sensor, 'restraintsindicatorwarning_600E30') == true -%}{%- set faults = faults + ['Restraint Indicator Warning']-%}{%- endif -%} 
+              {%- if state_attr(sensor, 'servicesteering_600F29') == true -%}{%- set faults = faults + ['Service Steering'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'startstopenginewarning_600F20') == true -%}{%- set faults = faults + ['Start-Stop Engine Warning'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'tractioncontroldisabled_600E23') == true -%}{%- set faults = faults + ['Traction Control Disabled'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'tractioncontrolevent_600E24') == true -%}{%- set faults = faults + ['Traction Control Event'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'tirepressuremonistersystemwarning_600E27') == true -%}{%- set faults = faults + ['Tire Pressure Monitoring System'] -%}{%- endif -%} 
+              {%- if state_attr(sensor, 'waterinfuel_600E10') == true -%}{%- set faults = faults + ['Water In Fuel'] -%}{%- endif -%}
+              {% if faults | length > 0 %}
+                {% for fault in faults %}
+              * <font color="red">**FAULT**</font> - {{ fault }}
+                {% endfor %}
+              {% else %}
+                <font color="green">**OK**</font> &nbsp;&nbsp;&nbsp;&nbsp; No faults indicated at this time
+              {% endif %}
+          - type: heading
+            heading_style: title
+            heading: Sensor Data
+            icon: mdi:access-point
+          - type: custom:mushroom-template-card
+            entity: lock.fordpass_YOURVINHERE_doorlock
+            primary: Door Locks
+            secondary: >-
+              {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorlock') }}
+            icon: mdi:car-door-lock
+            color: >
+              {{ 'green' if states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorlock') == 'LOCKED' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Parking Brake
+            secondary: >-
+              {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_parkingbrakestatus') }}
+            icon: mdi:car-brake-parking
+            color: >
+              {{ 'green' if states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_parkingbrakestatus') == 'ON' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Fuel Level
+            secondary: >-
+              {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') }}%
+            icon: mdi:gas-station
+            color: >
+              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') | int) > 50 -%}
+                green
+              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') | int) <= 50 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') | int) >= 10 -%}
+                orange
+              {%- else -%}
+                red
+              {%- endif -%}
+          - type: custom:mushroom-template-card
+            primary: Fuel Range
+            secondary: >-
+              {{ "{:,.0f}".format(state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel', 'fuelRange') | int) }} {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer', 'unit_of_measurement') }}
+            icon: mdi:flag-checkered
+            color: >
+              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') | int) > 50 -%}
+                green
+              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') | int) <= 50 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_fuel') | int) >= 10 -%}
+                orange
+              {%- else -%}
+                red
+              {%- endif -%}
+          - type: custom:mushroom-template-card
+            primary: Battery Voltage
+            secondary: >-
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery', 'batteryVoltage') }} V
+            icon: mdi:lightning-bolt-circle
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery', 'batteryVoltage') > 12 else 'orange' }}
+          - type: custom:mushroom-template-card
+            primary: Battery Percentage
+            secondary: >-
+              {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') }} %
+            icon: mdi:car-battery
+            color: >
+              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) > 70 -%}
+                green
+              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) <= 70 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) >= 30 -%}
+                orange
+              {%- else -%}
+                red
+              {%- endif -%}
+          - type: custom:mushroom-template-card
+            primary: Odometer
+            secondary: >-
+              {{ "{:,.0f}".format(states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer') | int) }} {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer', 'unit_of_measurement') }}
+            icon: mdi:counter
+          - type: custom:mushroom-template-card
+            primary: Oil Life
+            secondary: >-
+              {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') }} %
+            icon: mdi:oil
+            color: >
+              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) > 50 -%}
+                green
+              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) <= 50 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) >= 10 -%}
+                orange
+              {%- else -%}
+                red
+              {%- endif -%}
+          - type: custom:mushroom-template-card
+            primary: Washer Fluid
+            secondary: >-
+              {%- if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_indicators', 'lowwasherfluid_600E19') == false -%}
+                Level OK
+              {%- else -%}
+                Low Fluid Level
+              {%- endif -%}
+            icon: mdi:spray-bottle
+            color: >
+              {%- if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_indicators', 'lowwasherfluid_600E19') == false -%}
+                green
+              {%- else -%}
+                orange
+              {%- endif -%}
+      - type: grid
+        cards:
+          - type: heading
+            heading: Tire Pressure
+            heading_style: title
+            icon: mdi:gauge
+          - type: custom:mushroom-template-card
+            primary: Front Left
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'frontLeft') }}
+            icon: mdi:car-tire-alert
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'frontLeft_state') == 'NORMAL' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Front Right
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'frontRight') }}
+            icon: mdi:car-tire-alert
+            icon_color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'frontRight_state') == 'NORMAL' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Rear Left
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'rearLeft') }}
+            icon: mdi:car-tire-alert
+            icon_color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'rearLeft_state') == 'NORMAL' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Rear Right
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'rearRight') }}
+            icon: mdi:car-tire-alert
+            icon_color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_tirepressure', 'rearRight_state') == 'NORMAL' else 'red' }}
+          - type: heading
+            heading: Door Status
+            heading_style: title
+            icon: mdi:car-door
+          - type: custom:mushroom-template-card
+            primary: Front Left
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'driverFront') }}
+            icon: mdi:car-door
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'driverFront') == 'CLOSED' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Front Right
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'passengerFront') }}
+            icon: mdi:car-door
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'passengerFront') == 'CLOSED' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Rear Left
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'rearLeft') }}
+            icon: mdi:car-door
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'rearLeft') == 'CLOSED' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Rear Right
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'rearRight') }}
+            icon: mdi:car-door
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'rearRight') == 'CLOSED' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Hood
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'hood') }}
+            icon: mdi:car
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'hood') == 'CLOSED' else 'red' }}
+          - type: custom:mushroom-template-card
+            primary: Tailgate
+            secondary: >
+              {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'tailgate') }}
+            icon: mdi:car-back
+            color: >
+              {{ 'green' if state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorstatus', 'tailgate') == 'CLOSED' else 'red' }}
+          - type: heading
+            heading: Window Status
+            heading_style: title
+            icon: mdi:car-door
+          - type: custom:mushroom-template-card
+            primary: Driver
+            secondary: >
+              {{ 'Open' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'driver').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'driver').doubleRange.lowerBound != 0.0) else 'Closed' }}
+            icon: mdi:car-door
+            icon_color: >
+              {{ 'orange' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'driver').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'driver').doubleRange.lowerBound != 0.0) else 'green' }}
+          - type: custom:mushroom-template-card
+            primary: Passenger
+            secondary: >
+              {{ 'Open' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'passenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'passenger').doubleRange.lowerBound != 0.0) else 'Closed' }}
+            icon: mdi:car-door
+            icon_color: >
+              {{ 'orange' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'passenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'passenger').doubleRange.lowerBound != 0.0) else 'green' }}
+          - type: custom:mushroom-template-card
+            primary: Rear Left
+            secondary: >
+              {{ 'Open' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearDriver').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearDriver').doubleRange.lowerBound != 0.0) else 'Closed' }}
+            icon: mdi:car-door
+            icon_color: >
+              {{ 'orange' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearDriver').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearDriver').doubleRange.lowerBound != 0.0) else 'green' }}
+          - type: custom:mushroom-template-card
+            primary: Rear Right
+            secondary: >
+              {{ 'Open' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0) else 'Closed' }}
+            icon: mdi:car-door
+            icon_color: >
+              {{ 'Orange' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0) else 'Green' }}
+    cards: []
+    header:
+      card:
+        type: markdown
+        text_only: true
+        content: |
+          # Ford Car
+          VIN: {{ states('input_text.ford_vin') | upper }}
