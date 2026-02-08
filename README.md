@@ -5,7 +5,7 @@ This dashboard is almost "paste and forget" thanks to a variable created to plug
 
 `{{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorlock') }}`
 
-The trick is to create an input_text helper and calling it “Ford VIN” (input_text.ford_vin) and putting the VIN into the text box. This allows the dashboard to repeatedly call the VIN for use without having to type/find/replace anything. It also makes updates a lot easier too.
+The trick is to create an `input_text` helper and calling it “Ford VIN” (`input_text.ford_vin`) and putting the VIN into the text box. This allows the dashboard to repeatedly call the VIN for use without having to type/find/replace anything. It also makes updates a lot easier too.
 
 The other requirement is the Mushroom cards from HACS.
 
