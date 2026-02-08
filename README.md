@@ -1,5 +1,5 @@
 # FordPass-Dashboard
-A Home Assistant dashboard for the marq24/ha-fordpass FordPass integration
+A Home Assistant dashboard for the marq24/ha-fordpass FordPass integration (https://github.com/marq24/ha-fordpass).
 
 This dashboard is almost "paste and forget" thanks to a variable created to plug the VIN using a trick I sorted out on AI. An example:
 
