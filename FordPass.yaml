@@ -78,12 +78,11 @@ views:
             color: >
               {{ 'green' if states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_doorlock') == 'LOCKED' else 'red' }}
           - type: custom:mushroom-template-card
-            primary: Parking Brake
+            primary: Odometer
             secondary: >-
-              {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_parkingbrakestatus') }}
-            icon: mdi:car-brake-parking
-            color: >
-              {{ 'green' if states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_parkingbrakestatus') == 'ON' else 'red' }}
+              {{ "{:,.0f}".format(states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer') | int) }} {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer', 'unit_of_measurement') }}
+            icon: mdi:counter
+            color: green
           - type: custom:mushroom-template-card
             primary: Fuel Level
             secondary: >-
@@ -123,27 +122,22 @@ views:
               {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') }} %
             icon: mdi:car-battery
             color: >
-              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) > 70 -%}
+              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) > 55 -%}
                 green
-              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) <= 70 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) >= 30 -%}
+              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) <= 55 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_battery') | int) >= 50 -%}
                 orange
               {%- else -%}
                 red
               {%- endif -%}
-          - type: custom:mushroom-template-card
-            primary: Odometer
-            secondary: >-
-              {{ "{:,.0f}".format(states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer') | int) }} {{ state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer', 'unit_of_measurement') }}
-            icon: mdi:counter
           - type: custom:mushroom-template-card
             primary: Oil Life
             secondary: >-
               {{ states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') }} %
             icon: mdi:oil
             color: >
-              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) > 50 -%}
+              {%- if (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) > 30 -%}
                 green
-              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) <= 50 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) >= 10 -%}
+              {%- elif (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) <= 30 and (states('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_oil') | int) >= 10 -%}
                 orange
               {%- else -%}
                 red
@@ -283,3 +277,4 @@ views:
         content: |
           # Ford Car
           VIN: {{ states('input_text.ford_vin') | upper }}
+          Last Updated: {{ relative_time(state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_odometer', 'updateTime') | as_datetime) }} ago
