@@ -268,7 +268,7 @@ views:
               {{ 'Open' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0) else 'Closed' }}
             icon: mdi:car-door
             icon_color: >
-              {{ 'Orange' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0) else 'Green' }}
+              {{ 'orange' if (state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0 or state_attr('sensor.fordpass_' ~ states('input_text.ford_vin') ~ '_windowposition', 'rearPassenger').doubleRange.lowerBound != 0.0) else 'green' }}
     cards: []
     header:
       card:
